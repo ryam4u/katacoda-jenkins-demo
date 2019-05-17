@@ -1,11 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:7-alpine'
+    }
+
+  }
   stages {
     stage('Build') {
       steps {
-        sh '''docker build -t registry.vitekey.net/vitekey/github-test-1:${BUILD_NUMBER} .
-
-docker push registry.vitekey.net/vitekey/github-test-1:${BUILD_NUMBER}'''
+        sh 'node --version'
       }
     }
   }
